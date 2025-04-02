@@ -10,19 +10,19 @@ export default function ButtonAppBar() {
 
   const theme = useTheme()
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar>
-        <Toolbar>
-          <Box sx={{flexGrow: 1}}>
-            <Title />
-          </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position='static'>
+          <Toolbar>
+            <Box sx={{flexGrow: 1}}>
+              <Title />
+            </Box>
 
-          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", rowGap: theme.spacing(2), margin: theme.spacing(2)}}>
-            <Portrait />
-            <DownloadCvButton />
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", rowGap: theme.spacing(2), margin: theme.spacing(2)}}>
+              <Portrait />
+              <DownloadCvButton />
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </Box>
   );
 }
