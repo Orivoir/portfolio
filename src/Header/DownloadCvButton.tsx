@@ -1,8 +1,7 @@
 import DownloadIcon from '@mui/icons-material/Download';
-import { Alert, Snackbar, useTheme } from '@mui/material';
+import { Alert, Fab, Snackbar, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-
 
 export default function DownloadCvButton() {
 
@@ -26,9 +25,11 @@ export default function DownloadCvButton() {
   }
 
   const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
   return (
     <>
+    {matches ? (
     <Button
       variant='outlined'
       loadingPosition='end'
@@ -40,6 +41,11 @@ export default function DownloadCvButton() {
       startIcon={<DownloadIcon />}>
         Télécharger cv
     </Button>
+    ): (
+      <Fab size="small" color="primary" variant='extended' onClick={onDownload}>
+        <DownloadIcon /> CV
+      </Fab>
+    )}
 
     <Snackbar
       open={isOpenFallback}

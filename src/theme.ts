@@ -1,7 +1,7 @@
-import {createTheme} from "@mui/material"
+import {createTheme, responsiveFontSizes} from "@mui/material"
 
-export default createTheme({
+export default responsiveFontSizes(createTheme({
   palette: {
     mode: "dark"
   }
-})
+}))
