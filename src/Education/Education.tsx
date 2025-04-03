@@ -1,8 +1,6 @@
-import { Avatar, Button, ButtonGroup, Container, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Stack, Tooltip, Typography } from "@mui/material";
-import SchoolIcon from '@mui/icons-material/School';
-import DownloadCertificationButton from "./DownloadCertificationButton";
-import InfoIcon from '@mui/icons-material/Info';
-import EducationWebforce3 from "./EducationWebforce3";
+import { Container, Divider, List, Typography } from "@mui/material";
+import EducationItem from "./EducationItem";
+import {default as ContentModalWebForce3} from "./ModalWebForce3/ModalWebForce3";
 
 export default function Eduction() {
 
@@ -12,19 +10,12 @@ export default function Eduction() {
 
       <List sx={{width: "100%"}}>
 
-        <EducationWebforce3 />
+        <EducationItem title="Développement & Intégration web" subtitle="WebForce 3 - 2018" contentModal={<ContentModalWebForce3 />} />
 
         <Divider />
-
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <SchoolIcon />
-            </Avatar>
-          </ListItemAvatar>
-
-          <ListItemText primary="Développement Web" secondary="Openclassroom" />
-        </ListItem>
+        
+        {/* @TODO: placeholder content */}
+        <EducationItem title="Développement web" subtitle="openclassrooms" contentModal={<>Hello world !</>} />
       </List>
     </Container>
   )

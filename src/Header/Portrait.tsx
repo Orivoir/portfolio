@@ -1,5 +1,4 @@
 import { Avatar, useMediaQuery, useTheme } from "@mui/material"
-import { useEffect, useState } from "react"
 
 export interface PortraitProps {
   source?: string
@@ -14,39 +13,16 @@ export default function Portrait({source, size}: PortraitProps) {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up("md"))
 
-  const [normalizeSize, setNormalizeSize] = useState<number | undefined>(size)
-
   const sizeReducer = (sizeToReduce: number) => {
-
-    const pct = (sizeToReduce / 100) * 20
-
-    sizeToReduce -= pct
-
-    if(sizeToReduce < MIN_SIZE_PORTRAIT) {
-      return MIN_SIZE_PORTRAIT
-    }
-
-    return Math.round(sizeToReduce)
+    const reducedSize = sizeToReduce * 0.8
+    return Math.max(Math.round(reducedSize), MIN_SIZE_PORTRAIT)
   }
 
-  useEffect(() => {
-    
-    if(!size) {
-      size = DEFAULT_SIZE_PORTRAIT
-    }
+  if(!size) {
+    size = DEFAULT_SIZE_PORTRAIT
+  }
 
-    if(size < MIN_SIZE_PORTRAIT) {
-      size = MIN_SIZE_PORTRAIT
-    }
-
-    if(!matches) {
-      // reducer
-      setNormalizeSize(sizeReducer(size))
-    } else {
-      setNormalizeSize(size)
-    }
-
-  }, [matches])
+  const normalizeSize = matches ? Math.max(size, MIN_SIZE_PORTRAIT) : sizeReducer(size)
 
   return (
     <Avatar sx={{width: normalizeSize, height: normalizeSize}} src={source || "https://placehold.co/600x400"} />

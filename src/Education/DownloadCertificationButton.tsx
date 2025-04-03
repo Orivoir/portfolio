@@ -9,11 +9,20 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { Tooltip } from '@mui/material';
+import {Tooltip } from '@mui/material';
 
-const options = ['Certification développement web', 'Certification intégration web'];
+const options = ['Télécharger', 'Visualiser'];
 
-export default function DownloadCertificationButton() {
+const PATH_CERTIFICATIONS = {
+  DEV: "/portfolio/public/Certification_Developpement_SAMUEL_GABORIEAU.pdf",
+  INT: "/portfolio/public/Certification_Integration_SAMUEL_GABORIEAU.pdf"
+}
+
+export interface DownloadCertificationButtonProps {
+  type: "dev" | "int"
+}
+
+export default function DownloadCertificationButton({type}: DownloadCertificationButtonProps) {
   const [open, setOpen] = React.useState<boolean>(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -42,61 +51,59 @@ export default function DownloadCertificationButton() {
   }
 
   return (
-    <React.Fragment>
-      <ButtonGroup
+    <>
+    <ButtonGroup
         variant="outlined"
         ref={anchorRef}
-        aria-label="Button group with a nested menu"
       >
-        <Tooltip title={`Télécharger ${options[selectedIndex].toLocaleLowerCase()}`}>
-          <Button download href="#" endIcon={<PictureAsPdfIcon />}>{options[selectedIndex]}</Button>
+        <Tooltip title={`${options[selectedIndex].toLocaleLowerCase()} certification ${type === "dev" ? "dévelopement web": "intégration web"}`}>
+          <Button download={options[selectedIndex] === "Télécharger"} href={PATH_CERTIFICATIONS[type === "dev" ? "DEV": "INT"]} endIcon={<PictureAsPdfIcon />}>Certification {type === "dev" ? "dévelopement web": "intégration web"}</Button>
         </Tooltip>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
-          aria-label="select school certification to download"
           aria-haspopup="menu"
           onClick={handleToggle}
         >
           <ArrowDropDownIcon />
         </Button>
-      </ButtonGroup>
-      <Popper
-        sx={{ zIndex: 1 }}
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
-                    <MenuItem
-                      key={option}
-                      disabled={index === 2}
-                      selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </React.Fragment>
+    </ButtonGroup>
+    <Popper
+      sx={{ zIndex: 1 }}
+      open={open}
+      anchorEl={anchorRef.current}
+      role={undefined}
+      transition
+      disablePortal
+    >
+      {({ TransitionProps, placement }) => (
+        <Grow
+          {...TransitionProps}
+          style={{
+            transformOrigin:
+              placement === 'bottom' ? 'center top' : 'center bottom',
+          }}
+        >
+          <Paper>
+            <ClickAwayListener onClickAway={handleClose}>
+              <MenuList id="split-button-menu" autoFocusItem>
+                {options.map((option, index) => (
+                  <MenuItem
+                    key={option}
+                    disabled={index === 2}
+                    selected={index === selectedIndex}
+                    onClick={(event) => handleMenuItemClick(event, index)}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </ClickAwayListener>
+          </Paper>
+        </Grow>
+      )}
+    </Popper>
+    </>
   );
 }
