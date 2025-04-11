@@ -25,6 +25,9 @@ export default function Portrait({source, size}: PortraitProps) {
   const normalizeSize = matches ? Math.max(size, MIN_SIZE_PORTRAIT) : sizeReducer(size)
 
   return (
-    <Avatar sx={{width: normalizeSize, height: normalizeSize}} src={source || "https://placehold.co/600x400"} />
+    <Avatar sx={{
+      width: normalizeSize,
+      height: normalizeSize,
+    }} src={source || "https://placehold.co/600x400"} />
   )
 }

@@ -4,6 +4,7 @@ import theme from "./theme"
 import Header from "./Header/Header"
 import ProjectsList from "./ProjectsList/ProjectsList";
 import Education from "./Education/Education";
+import { projects } from "./constant";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
       <CssBaseline />
       <Header />
 
-        <ProjectsList projects={[{}, {}, {}, {}, {}]} />
+        <ProjectsList projects={[...projects, {}, {}]} />
 
         <Education /> 
     </ThemeProvider>

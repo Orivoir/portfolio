@@ -21,8 +21,6 @@ export default function ImageList({size, images, cols, rowHeight}: ImageListProp
   const colsNormalize = cols || DEFAULT_COLS
   const rowHeightNormalize = rowHeight || DEFAULT_ROW_HEIGHT
 
-  console.log(sizeNormalize)
-
   return (
     <MUIImageList sx={{...sizeNormalize}} cols={colsNormalize} rowHeight={rowHeightNormalize}>
       {images.map((image: ImageItemType, index: number) => (

@@ -4,7 +4,7 @@ import  Title from "./Title"
 import { Toolbar, useTheme } from '@mui/material';
 import Portrait from './Portrait';
 import DownloadCvButton from './DownloadCvButton';
-
+import profilPhoto from "./../assets/profil.jpg"
 
 export default function ButtonAppBar() {
 
@@ -18,7 +18,7 @@ export default function ButtonAppBar() {
             </Box>
 
             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", rowGap: theme.spacing(2), margin: theme.spacing(2)}}>
-              <Portrait />
+              <Portrait source={profilPhoto} />
               <DownloadCvButton />
             </Box>
           </Toolbar>
