@@ -1,4 +1,4 @@
-import { Button, Container, Divider, List, Typography } from "@mui/material";
+import { Button, Container, List, Typography } from "@mui/material";
 import EducationItem from "./EducationItem";
 import {default as ContentModalWebForce3} from "./ModalWebForce3/ModalWebForce3";
 import { useMemo, useState } from "react";
