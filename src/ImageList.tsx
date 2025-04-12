@@ -2,10 +2,10 @@ import { ImageList as MUIImageList, ImageListItem, ImageListItemBar } from "@mui
 
 export type ImageItemType = {url: string; title: string; subtitle?: string}
 
-import {DEFAULT_COLS, DEFAULT_ROW_HEIGHT, DEFAULT_SIZE} from "./../../constant"
+import {DEFAULT_COLS, DEFAULT_ROW_HEIGHT, DEFAULT_SIZE} from "./constant"
 
 export interface ImageListProps {
-  size?: {width?: number; height?: number};
+  size?: {width?: number | string; height?: number | string};
   images: ImageItemType[];
   cols?: number;
   rowHeight?: number;

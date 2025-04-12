@@ -1,6 +1,5 @@
-import GitHubIcon from '@mui/icons-material/GitHub';
-import DesignServicesIcon from '@mui/icons-material/DesignServices';
-import { Card, CardActions, CardContent, CardMedia, IconButton, Typography, CardActionArea, Box, Tooltip } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Typography, CardActionArea, Box } from '@mui/material';
+import Actions from './Actions';
 
 export interface ProjectItemProps {
   media?: string;
@@ -18,6 +17,7 @@ export default function ProjectItem({
   figmaUrl
 }: ProjectItemProps) {
 
+  // factory data
   const mediaItem = media || "https://placehold.co/600x400"
   const titleItem = title || "Lorem Ipsum"
   const shortDescriptionItem = shortDescription || "Lorem ipsum, dolor sit amet consectum amat, victoria sit couram."
@@ -49,18 +49,7 @@ export default function ProjectItem({
       </CardContent>
 
       <CardActions>
-        
-        <Tooltip title="voir le github du projet">
-          <IconButton href={githubUrl || "#"} disabled={!githubUrl} target='_blank' size="large">
-            <GitHubIcon />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="voir le design du projet (figma)">
-          <IconButton href={figmaUrl || "#"} disabled={!figmaUrl} target='_blank' size="large">
-            <DesignServicesIcon />
-          </IconButton>
-        </Tooltip>
+        <Actions figmaUrl={figmaUrl} githubUrl={githubUrl} />
       </CardActions>
 
     </Card>
