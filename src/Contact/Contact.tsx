@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Box, TextField, Button, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, TextField, Button, Typography, Snackbar, Alert } from '@mui/material';
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,12 @@ export default function Contact() {
     message: ''
   });
 
-  const [isPending, setIsPending] = useState<boolean>(false)
+  const [isPending, setIsPending] = useState<boolean>(false);
+  const [isOpenFallback, setIsOpenFallback] = useState(false);
+  const [messageFallback, setMessageFallback] = useState('');
+  const [alertSeverity, setAlertSeverity] = useState<'success' | 'error'>('success');
+
+  const [state, handleSubmit] = useForm("xzzeonwo"); // Remplace par ton ID Formspree
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -17,20 +23,37 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 👉 Ajoute ici ta logique d'envoi (ex: appel à une API, emailjs, etc.)
-    console.log('Données envoyées :', formData);
+    setIsPending(true);
+    handleSubmit(e);
+  };
 
-    setIsPending(true)
+  // ⬇️ Observer les changements dans l’état de Formspree
+  useEffect(() => {
+    if (state.succeeded) {
+      setAlertSeverity('success');
+      setMessageFallback('Message envoyé avec succès !');
+      setIsOpenFallback(true);
+      setFormData({ object: '', email: '', message: '' });
+      setIsPending(false);
+    } else if (state.errors && state.errors.getAllFieldErrors().length > 0) {
+      setAlertSeverity('error');
+      setMessageFallback('Erreur lors de l’envoi du message.');
+      console.error('Formspree errors:', state.errors);
+      setIsOpenFallback(true);
+      setIsPending(false);
+    }
+  }, [state.succeeded, state.errors]);
 
-    // send data ->
+  const onCloseFallback = () => {
+    setIsOpenFallback(false);
   };
 
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       sx={{
         maxWidth: 500,
         mx: 'auto',
@@ -55,7 +78,11 @@ export default function Contact() {
         required
         fullWidth
       />
-
+      <ValidationError
+        prefix="Email"
+        field="email"
+        errors={state.errors}
+      />
 
       <TextField
         label="Objet"
@@ -64,7 +91,7 @@ export default function Contact() {
         value={formData.object}
         onChange={handleChange}
         required
-        type='text'
+        type="text"
         fullWidth
       />
 
@@ -80,9 +107,33 @@ export default function Contact() {
         fullWidth
       />
 
-      <Button type="submit" loading={isPending} variant="outlined" color="primary">
-        Envoyer
+      <Button type="submit" variant="outlined" color="primary" disabled={isPending}>
+        {isPending ? 'Envoi en cours...' : 'Envoyer'}
       </Button>
+
+      <Snackbar
+        open={isOpenFallback}
+        autoHideDuration={5000}
+        onClose={onCloseFallback}
+        sx={{
+          backgroundColor: 'background.paper',
+          borderRadius: 1,
+          outline: "none",
+        }}
+      >
+        <Alert
+          onClose={onCloseFallback}
+          severity={alertSeverity}
+          variant="outlined"
+          sx={{
+            width: '100%',
+            border: 'none',
+            outline: 'none',
+          }}
+        >
+          {messageFallback}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
