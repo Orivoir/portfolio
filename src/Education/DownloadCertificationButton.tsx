@@ -14,8 +14,8 @@ import {Tooltip } from '@mui/material';
 const options = ['Télécharger', 'Visualiser'];
 
 const PATH_CERTIFICATIONS = {
-  DEV: "/portfolio/public/Certification_Developpement_SAMUEL_GABORIEAU.pdf",
-  INT: "/portfolio/public/Certification_Integration_SAMUEL_GABORIEAU.pdf"
+  DEV: "/portfolio/Certification_Developpement_SAMUEL_GABORIEAU.pdf",
+  INT: "/portfolio/Certification_Integration_SAMUEL_GABORIEAU.pdf"
 }
 
 export interface DownloadCertificationButtonProps {

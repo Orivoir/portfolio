@@ -7,6 +7,8 @@ import Education from "./Education/Education";
 import { projects } from "./constant";
 import Experience from "./Experience/Experience";
 import Contact from "./Contact/Contact";
+import About from "./About/About";
+import Footer from "./Footer/Footer";
 
 function App() {
 
@@ -18,13 +20,17 @@ function App() {
 
       <Header />
 
+      <About />
+
       <ProjectsList projects={[...projects, {}, {}]} />
 
       <Education />
 
       <Experience />
 
-      <Contact />      
+      <Contact />
+
+      <Footer />      
     </ThemeProvider>
   )
 }

@@ -1,4 +1,4 @@
-import { Grid, Paper} from "@mui/material"
+import { Box, Grid, Typography} from "@mui/material"
 import type { ProjectItemProps } from "../ProjectItem/ProjectItem"
 import ProjectItem from "../ProjectItem/ProjectItem"
 
@@ -9,7 +9,9 @@ export interface ProjectsListProps {
 export default function ProjectsList({projects}: ProjectsListProps) {
 
   return (
-    <Paper elevation={0} sx={{mt: 4}}>
+    <Box sx={{mt: 4}}>
+
+        <Typography sx={{textAlign: "center", mb: 2}} variant="h3" component="h3">Mes projets récents</Typography>
         <Grid container spacing={2} sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           {projects.map((project, index: number) => (
             <Grid key={index} size={{xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}>
@@ -17,6 +19,6 @@ export default function ProjectsList({projects}: ProjectsListProps) {
             </Grid>
           ))}
         </Grid>
-    </Paper>
+    </Box>
   )
 }

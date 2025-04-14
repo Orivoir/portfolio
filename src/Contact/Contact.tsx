@@ -47,7 +47,7 @@ export default function Contact() {
 
       <TextField
         disabled={isPending}
-        label="Email"
+        label="Votre email"
         name="email"
         type="email"
         value={formData.email}

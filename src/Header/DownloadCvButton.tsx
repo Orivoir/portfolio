@@ -31,7 +31,7 @@ export default function DownloadCvButton() {
     <>
     {matches ? (
     <Button
-      variant='outlined'
+      variant='contained'
       loadingPosition='end'
       href='#'
       download

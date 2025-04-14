@@ -1,5 +1,6 @@
 import { JSX } from "@emotion/react/jsx-runtime";
-import { Box, Modal, useTheme } from "@mui/material"
+import { Box, IconButton, Modal, useTheme } from "@mui/material"
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface ModalDetails {
   isOpen: boolean
@@ -24,9 +25,16 @@ export default function ModalDetails({isOpen, onClose, children}: ModalDetails) 
           top: "50%",
           left: "50%",
           transform: 'translate(-50%, -50%)',
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: theme.shape.borderRadius / 4,
           pt: 2, pb: 2, pr: 8, pl: 8
-          }}>{children}</Box>
+          }}>
+          <Box sx={{display: "flex", justifyContent: "flex-end"}}>
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+            {children}
+          </Box>
     </Modal>
   )
 }
