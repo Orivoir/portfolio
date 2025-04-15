@@ -33,7 +33,7 @@ export default function DownloadCvButton() {
     <Button
       variant='contained'
       loadingPosition='end'
-      href='/portfolio/CV_Samuel_Gaborieau_Dev_Fullstack_2024.pdf'
+      href='/portfolio/Samuel-GABORIEAU_DEV_FULLSTACK_2025.pdf'
       download
       fullWidth
       loading={isLoading}
