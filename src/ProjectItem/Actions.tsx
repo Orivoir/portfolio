@@ -1,13 +1,15 @@
 import { IconButton, Tooltip } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import BrushIcon from '@mui/icons-material/Brush';
+import HandymanIcon from '@mui/icons-material/Handyman';
 
 export interface ActionsInterface {
   githubUrl?: string;
   figmaUrl?: string;
+  isDevelopMode?: boolean
 }
 
-export default function Actions({figmaUrl,githubUrl}: ActionsInterface) {
+export default function Actions({figmaUrl,githubUrl, isDevelopMode}: ActionsInterface) {
 
   return (
     <>    
@@ -22,6 +24,12 @@ export default function Actions({figmaUrl,githubUrl}: ActionsInterface) {
         <BrushIcon />
       </IconButton>
     </Tooltip>
+
+    {isDevelopMode && (
+      <Tooltip title="projet en cours de développement">
+        <HandymanIcon />
+      </Tooltip>
+    )}
     </>
   )
 }

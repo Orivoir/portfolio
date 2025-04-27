@@ -4,7 +4,7 @@ import  Title from "./Title"
 import { Toolbar, useTheme } from '@mui/material';
 import Portrait from './Portrait';
 import DownloadCvButton from './DownloadCvButton';
-import profilPhoto from "./../assets/profil.jpg"
+import profilPhoto from "./../assets/profil.webp"
 import Adress from './Adress';
 
 export default function ButtonAppBar() {

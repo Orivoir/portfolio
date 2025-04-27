@@ -32,7 +32,8 @@ export const projects: ProjectItemProps[] = [
     title: "chessboard.js",
     shortDescription: "chessboard.js est une librairie qui fournit l'interface d'un plateau d'échecs",
     githubUrl: "https://github.com/Orivoir/chessboard.js",
-    media: chessboardJsLogo
+    media: chessboardJsLogo,
+    isDevelopMode: true
   }
 ]
 

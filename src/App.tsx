@@ -9,6 +9,8 @@ import Experience from "./Experience/Experience";
 import Contact from "./Contact/Contact";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProjectDetails from "./ProjectDetails/ProjectDetails";
 
 function App() {
 
@@ -18,19 +20,25 @@ function App() {
       {/* normalize css */}
       <CssBaseline />
 
-      <Header />
+      <BrowserRouter basename="/portfolio">
+        <Header />
 
-      <About />
+        <Routes>
+          <Route path="/" element={(
+            <>
+            <About />
+            <ProjectsList projects={[...projects, {}, {}]} />
+            <Education />
+            <Experience />
+            <Contact />
+            </>)} />
 
-      <ProjectsList projects={[...projects, {}, {}]} />
+          <Route path="/project/:name" element={<ProjectDetails />} />
 
-      <Education />
+        </Routes>
 
-      <Experience />
-
-      <Contact />
-
-      <Footer />      
+        <Footer />
+      </BrowserRouter>      
     </ThemeProvider>
   )
 }

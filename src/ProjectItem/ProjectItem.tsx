@@ -7,6 +7,7 @@ export interface ProjectItemProps {
   shortDescription?: string;
   githubUrl?: string;
   figmaUrl?: string;
+  isDevelopMode?: boolean
 }
 
 export default function ProjectItem({
@@ -14,7 +15,8 @@ export default function ProjectItem({
   title,
   shortDescription,
   githubUrl,
-  figmaUrl
+  figmaUrl,
+  isDevelopMode
 }: ProjectItemProps) {
 
   // factory data
@@ -24,7 +26,7 @@ export default function ProjectItem({
 
   return (
     <Card sx={{minWidth: 200}}>
-      <CardActionArea>
+      <CardActionArea href={title ? `/portfolio/project/${title}`: "#"}>
       <Box sx={{ position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
         <CardMedia
           component="img"
@@ -49,7 +51,7 @@ export default function ProjectItem({
       </CardContent>
 
       <CardActions>
-        <Actions figmaUrl={figmaUrl} githubUrl={githubUrl} />
+        <Actions isDevelopMode={isDevelopMode} figmaUrl={figmaUrl} githubUrl={githubUrl} />
       </CardActions>
 
     </Card>
