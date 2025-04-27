@@ -9,7 +9,7 @@ import Experience from "./Experience/Experience";
 import Contact from "./Contact/Contact";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import ProjectDetails from "./ProjectDetails/ProjectDetails";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       {/* normalize css */}
       <CssBaseline />
 
-      <BrowserRouter basename="/portfolio">
+      <HashRouter>
         <Header />
 
         <Routes>
@@ -33,12 +33,12 @@ function App() {
             <Contact />
             </>)} />
 
-          <Route path="/project/:name" element={<ProjectDetails />} />
+          <Route path="project/:name" element={<ProjectDetails />} />
 
         </Routes>
 
         <Footer />
-      </BrowserRouter>      
+      </HashRouter>      
     </ThemeProvider>
   )
 }

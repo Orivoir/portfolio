@@ -26,7 +26,7 @@ export default function ProjectItem({
 
   return (
     <Card sx={{minWidth: 200}}>
-      <CardActionArea href={title ? `/portfolio/project/${title}`: "#"}>
+      <CardActionArea href={title ? `/portfolio/#/project/${title}`: "#"}>
       <Box sx={{ position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
         <CardMedia
           component="img"
