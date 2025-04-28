@@ -7,7 +7,8 @@ export interface ProjectItemProps {
   shortDescription?: string;
   githubUrl?: string;
   figmaUrl?: string;
-  isDevelopMode?: boolean
+  isDevelopMode?: boolean;
+  projectUrl?: string;
 }
 
 export default function ProjectItem({
@@ -16,7 +17,8 @@ export default function ProjectItem({
   shortDescription,
   githubUrl,
   figmaUrl,
-  isDevelopMode
+  isDevelopMode,
+  projectUrl
 }: ProjectItemProps) {
 
   // factory data
@@ -25,7 +27,7 @@ export default function ProjectItem({
   const shortDescriptionItem = shortDescription || "Lorem ipsum, dolor sit amet consectum amat, victoria sit couram."
 
   return (
-    <Card sx={{minWidth: 200}}>
+    <Card sx={{minWidth: 200, height: 350, pb: 2}}>
       <CardActionArea href={title ? `/portfolio/#/project/${title}`: "#"}>
       <Box sx={{position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
         <CardMedia
@@ -52,7 +54,7 @@ export default function ProjectItem({
       </CardContent>
 
       <CardActions>
-        <Actions isDevelopMode={isDevelopMode} figmaUrl={figmaUrl} githubUrl={githubUrl} />
+        <Actions projectUrl={projectUrl} isDevelopMode={isDevelopMode} figmaUrl={figmaUrl} githubUrl={githubUrl} />
       </CardActions>
 
     </Card>

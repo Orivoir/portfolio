@@ -2,14 +2,16 @@ import { IconButton, Tooltip } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import BrushIcon from '@mui/icons-material/Brush';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import WebIcon from '@mui/icons-material/Web';
 
 export interface ActionsInterface {
   githubUrl?: string;
   figmaUrl?: string;
-  isDevelopMode?: boolean
+  isDevelopMode?: boolean;
+  projectUrl?: string;
 }
 
-export default function Actions({figmaUrl,githubUrl, isDevelopMode}: ActionsInterface) {
+export default function Actions({figmaUrl,githubUrl, isDevelopMode, projectUrl}: ActionsInterface) {
 
   return (
     <>    
@@ -24,6 +26,14 @@ export default function Actions({figmaUrl,githubUrl, isDevelopMode}: ActionsInte
         <BrushIcon />
       </IconButton>
     </Tooltip>
+
+    {projectUrl && (
+      <Tooltip title="voir le projet web">
+        <IconButton href={projectUrl}>
+          <WebIcon />
+        </IconButton>
+      </Tooltip>
+    )}
 
     {isDevelopMode && (
       <Tooltip title="projet en cours de développement">

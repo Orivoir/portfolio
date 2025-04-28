@@ -10,8 +10,8 @@ const theme = createTheme({
       main: '#10b981', // Vert menthe
     },
     background: {
-      default: '#f9fafb', // Gris très clair
-      paper: '#ffffff',
+      default: '#f4f7fa', // Gris clair, légèrement plus doux
+      paper: '#ffffff', // Blanc cassé, toujours pur mais plus doux
     },
     text: {
       primary: '#1f2937', // Gris foncé
@@ -56,6 +56,7 @@ const theme = createTheme({
     },
   },
 });
+
 
 
 
