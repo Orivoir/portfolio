@@ -27,7 +27,7 @@ export default function ProjectItem({
   const shortDescriptionItem = shortDescription || "Lorem ipsum, dolor sit amet consectum amat, victoria sit couram."
 
   return (
-    <Card sx={{minWidth: 200, height: 350, pb: 2}}>
+    <Card sx={{minWidth: 200, height: 385, pb: 2}}>
       <CardActionArea href={title ? `/portfolio/#/project/${title}`: "#"}>
       <Box sx={{position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
         <CardMedia
