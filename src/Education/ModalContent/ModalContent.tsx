@@ -32,7 +32,7 @@ export default function ModalWebForce3({
         title={title}
         subtitle={subtitle} />
 
-      <Box sx={{mt: 4}}>
+      <Box sx={{mt: 4, overflowY: "auto", maxHeight: "70vh"}}>
         <LongDescribe describe={longDescribe} />
 
         {images && (<ModalImageList {...images} />)}

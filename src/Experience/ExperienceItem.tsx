@@ -19,6 +19,7 @@ export default function ExperienceItem({
 
   const matchesDownMd = useMediaQuery(theme.breakpoints.down("lg"))
   const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"))
+  const matchesOnlyXs = useMediaQuery(theme.breakpoints.only("xs"))
 
   let cols = 4;
   
@@ -28,6 +29,10 @@ export default function ExperienceItem({
 
   if(matchesDownSm) {
     cols = 2
+  }
+
+  if(matchesOnlyXs) {
+    cols = 1
   }
 
 

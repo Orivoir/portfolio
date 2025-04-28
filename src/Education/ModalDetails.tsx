@@ -29,6 +29,7 @@ export default function ModalDetails({isOpen, onClose, children}: ModalDetails) 
     styles.borderRadius = 0
     styles.width = "100%"
     styles.height = "100%"
+    styles.maxHeight = "100%"
   }
 
   return (
