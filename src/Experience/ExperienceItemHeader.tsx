@@ -1,4 +1,4 @@
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
@@ -22,11 +22,13 @@ export default function ExperienceItemHeader({
 
   const theme = useTheme()
 
+  const matchesDownSm = useMediaQuery(theme.breakpoints.down("md"))
+
   return (
     <>
     <Box>
 
-        <Box sx={{display: "flex", flexDirection: "row", alignItems: "center", columnGap: theme.spacing(2)}}>
+        <Box sx={{display: "flex", flexDirection: matchesDownSm ? "column": "row", alignItems: matchesDownSm ? "flex-start" :"center", columnGap: theme.spacing(2)}}>
           <Typography variant="h4" component="h4">{company}</Typography>
 
           <Typography variant="subtitle1">

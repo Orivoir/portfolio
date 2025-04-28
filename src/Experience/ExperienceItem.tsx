@@ -1,4 +1,4 @@
-import {Paper, Typography } from "@mui/material";
+import {Paper, Typography, useMediaQuery, useTheme } from "@mui/material";
 import ExperienceItemHeader, { ExperienceItemHeaderProps } from "./ExperienceItemHeader";
 import { JSX } from "@emotion/react/jsx-runtime";
 import ImageList, { ImageListProps } from "../ImageList";
@@ -15,6 +15,21 @@ export default function ExperienceItem({
   images
 }: ExperienceItemProps) {
 
+  const theme = useTheme()
+
+  const matchesDownMd = useMediaQuery(theme.breakpoints.down("lg"))
+  const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"))
+
+  let cols = 4;
+  
+  if(matchesDownMd) {
+    cols = 3
+  }
+
+  if(matchesDownSm) {
+    cols = 2
+  }
+
 
   return (
     <Paper elevation={3} sx={{pt: 1, pb: 1, pl:4, pr: 4, mt: 2, mb: 2}}>
@@ -26,7 +41,7 @@ export default function ExperienceItem({
       ): longDescribe}
 
       {images && (
-        <ImageList {...images} />
+        <ImageList {...images} cols={cols} />
       )}
 
     </Paper>

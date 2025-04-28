@@ -27,7 +27,7 @@ export default function ProjectItem({
   return (
     <Card sx={{minWidth: 200}}>
       <CardActionArea href={title ? `/portfolio/#/project/${title}`: "#"}>
-      <Box sx={{ position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
+      <Box sx={{position: 'relative', paddingTop: '56.25%' /* 16:9 */ }}>
         <CardMedia
           component="img"
           alt="Titre image"
@@ -37,9 +37,10 @@ export default function ProjectItem({
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
+            width: '90%',
+            height: '90%',
             objectFit: 'contain',
+            transform: "translateX(5%) translateY(5%)"
           }}
         />
       </Box>

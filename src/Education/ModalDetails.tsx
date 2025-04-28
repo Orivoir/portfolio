@@ -1,5 +1,5 @@
 import { JSX } from "@emotion/react/jsx-runtime";
-import { Box, IconButton, Modal, useTheme } from "@mui/material"
+import { Box, IconButton, Modal, SxProps, useMediaQuery, useTheme } from "@mui/material"
 import CloseIcon from '@mui/icons-material/Close';
 
 export interface ModalDetails {
@@ -12,6 +12,25 @@ export default function ModalDetails({isOpen, onClose, children}: ModalDetails) 
 
   const theme = useTheme()
 
+  const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"))
+
+  const styles: SxProps<typeof theme> = {
+    bgcolor: "background.paper",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: 'translate(-50%, -50%)',
+    borderRadius: theme.shape.borderRadius / 4,
+    pt: 2, pb: 2, pr: 8, pl: 8,
+  }
+
+  if(matchesDownMd) {
+
+    styles.borderRadius = 0
+    styles.width = "100%"
+    styles.height = "100%"
+  }
+
   return (
     <Modal
         keepMounted
@@ -19,15 +38,7 @@ export default function ModalDetails({isOpen, onClose, children}: ModalDetails) 
         onClose={onClose}
         aria-describedby="Informations détaillé de formation"
       >
-        <Box sx={{
-          bgcolor: "background.paper",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: 'translate(-50%, -50%)',
-          borderRadius: theme.shape.borderRadius / 4,
-          pt: 2, pb: 2, pr: 8, pl: 8
-          }}>
+        <Box sx={{...styles}}>
           <Box sx={{display: "flex", justifyContent: "flex-end"}}>
             <IconButton onClick={onClose}>
               <CloseIcon />

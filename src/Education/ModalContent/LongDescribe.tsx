@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 
 export default function LongDescribe({describe}: {describe: string}) {
@@ -9,26 +9,35 @@ export default function LongDescribe({describe}: {describe: string}) {
     setHasShowMore(currentValue => !currentValue)
   )
 
+  const theme = useTheme()
+  const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"))
+
+  const withReadMore = () => (
+  <>
+  {describe.slice(0, !hasShowMore ? 255: Infinity)} {!hasShowMore ? "...": ""}
+  <Typography
+    component="span"
+    onClick={toggleState}
+    sx={{
+      color: 'primary.main',
+      cursor: 'pointer',
+      fontWeight: 500,
+      display: 'inline',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    }}
+  >
+    {hasShowMore ? 'Réduire' : 'Lire plus'}
+  </Typography>
+  </>
+  )
+
   return (
     <Box>
+
       <Typography sx={{lineHeight: "1.33rem"}} variant="body2">
-        {describe.slice(0, !hasShowMore ? 255: Infinity)} {!hasShowMore ? "...": ""}
-        
-        <Typography
-          component="span"
-          onClick={toggleState}
-          sx={{
-            color: 'primary.main',
-            cursor: 'pointer',
-            fontWeight: 500,
-            display: 'inline',
-            '&:hover': {
-              textDecoration: 'underline',
-            },
-          }}
-        >
-          {hasShowMore ? 'Réduire' : 'Lire plus'}
-        </Typography>
+        {!matchesDownMd ? withReadMore(): describe}
       </Typography>
     </Box>
   )

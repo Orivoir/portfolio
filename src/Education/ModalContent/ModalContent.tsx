@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material"
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material"
 import Title from "./Title"
 import {ImageListProps, default as ModalImageList} from "../../ImageList"
 import LongDescribe from "./LongDescribe"
@@ -22,6 +22,9 @@ export default function ModalWebForce3({
   actions,
 }: ModalContentProps) {
 
+  const theme = useTheme()
+  const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"))
+
   return (
     <>
       <Title
@@ -35,7 +38,7 @@ export default function ModalWebForce3({
         {images && (<ModalImageList {...images} />)}
 
         {actions && (
-        <Stack direction="row" spacing={4} sx={{mt: 4}}>{actions}</Stack>
+        <Stack direction={matchesDownSm ? "column": "row"} spacing={4} sx={{mt: 4}}>{actions}</Stack>
         )}
       </Box>
     </>
